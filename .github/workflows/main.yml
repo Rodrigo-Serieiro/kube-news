@@ -28,4 +28,13 @@ jobs:
         with:
           username: ${{secrets.DOCKERHUB_USER}}
           password: ${{secrets.DOCKERHUB_PWD}}
-  
+          
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.1.0
+        with:
+          file: ./src/dockerfile
+          context: ./src
+          push: true
+          tags:  | 
+            rodrigoserieiro/kube-news:latest
+            rodrigoserieiro/kube-news:${{github.run_number}}
