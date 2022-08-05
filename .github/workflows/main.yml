@@ -26,19 +26,19 @@
             tags:  | 
               rodrigoserieiro/kube-news:latest
               rodrigoserieiro/kube-news:${{github.run_number}}
-   CD:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    CD:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
 
-      - name: Kubernetes Set Context
-        uses: Azure/k8s-set-context@v3.0
-        with:
-          method: kubeconfig
-          kubeconfig: ${{secrets.k8s_CONFIG}}
-      - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v4.3
-        with:
-          imagens: rodrigoserieiro/kube-news:${{github.run_number}}
-          manifestes: |
+        - name: Kubernetes Set Context
+          uses: Azure/k8s-set-context@v3.0
+          with:
+            method: kubeconfig
+            kubeconfig: ${{secrets.k8s_CONFIG}}
+        - name: Deploy to Kubernetes cluster
+          uses: Azure/k8s-deploy@v4.3
+          with:
+            imagens: rodrigoserieiro/kube-news:${{github.run_number}}
+            manifestes: |
             k8s/deployment.yaml
