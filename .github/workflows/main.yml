@@ -41,4 +41,4 @@
           with:
             imagens: rodrigoserieiro/kube-news:${{github.run_number}}
             manifestes: |
-            k8s/deployment.yaml
+              k8s/deployment.yaml
